@@ -1,0 +1,421 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TESTES_SPMEDGROUP",
+		"_postman_id": "f3cf4c35-7ecc-6523-e580-01ccdbe23191",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Medicos",
+			"description": "",
+			"item": [
+				{
+					"name": "MedicoRepository.Cadastrar",
+					"request": {
+						"url": "localhost:5000/api/medicos",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n       \"nome\": \"Deletado\",\n        \"crm\": \"0002-SP\",\n        \"endereco\": \"Av. Barão Limeira, 532, São Paulo, SP\",\n        \"telefone\": \"-\",\n        \"idUsuario\": 19,\n        \"idEspecialidade\": 2,\n        \"idClinica\": 1,\n        \"consultas\": []\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "MedicoRepository.ListarMedicos",
+					"request": {
+						"url": "localhost:5000/api/medicos",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "MedicoRepository.Deletar",
+					"request": {
+						"url": "localhost:5000/api/medicos/18",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "MedicoRepository.Alterar",
+					"request": {
+						"url": "localhost:5000/api/medicos",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": 1,\n        \"nome\": \"Ricardo Lemos\",\n        \"crm\": \"54356-SP\",\n        \"endereco\": \"Av. outro endereço, 532, São Paulo, SP\",\n        \"telefone\": \"-\",\n        \"idUsuario\": 2,\n        \"idEspecialidade\": 2,\n        \"idClinica\": 1,\n        \"consultas\": []\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"description": "",
+			"item": [
+				{
+					"name": "UsuarioRepository.Alterar",
+					"request": {
+						"url": "localhost:5000/api/usuarios",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n    {\n        \"id\": 22,\n        \"email\": \"pacientetestetres@testetres.com.br\",\n        \"senha\": \"sad\",\n        \"idTipoUsario\": 3,\n        \"medicos\": [],\n        \"prontuariosPacientes\": []\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UsuarioRepository.ListarUsuarios",
+					"request": {
+						"url": "localhost:5000/api/usuarios",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbUBhZG0uY29tLmJyIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFETSIsImV4cCI6MTU1MjU5MDU5OCwiaXNzIjoiU3BtZWRncm91cC5XZWJBcGkiLCJhdWQiOiJTcG1lZGdyb3VwLldlYkFwaSJ9.cRk7xbKTR7RkFiPx5U5nyMHkA3g_9m8RBAHZqGrH51Y",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"Email\": \"teste@teste.com.br\",\n        \"Senha\": \"asdasd\",\n        \"IdTipoUsuario\": 1\n        \n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UsuarioRepository.Cadastrar",
+					"request": {
+						"url": "localhost:5000/api/usuarios",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"Email\": \"admtestetres@testetres.com.br\",\n        \"Senha\": \"sad\",\n        \"IdTipoUsario\": 1,\n        \"Medicos\": [],\n        \"ProntuariosPacientes\": []\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "UsuarioRepository.Deletar",
+					"request": {
+						"url": "localhost:5000/api/usuarios/19",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProntuariosPacientes",
+			"description": "",
+			"item": [
+				{
+					"name": "ProntuarioPacienteRepository.ListarProntuariosPacientes",
+					"request": {
+						"url": "localhost:5000/api/prontuariospacientes",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ProntuarioPacienteRepository.Cadastrar",
+					"request": {
+						"url": "localhost:5000/api/prontuariospacientes",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"nome\": \"Paciente teste dois\",\n        \"endereco\": \"R Sao Antonio, 232 - Vila Universal, Barueri - SP, 06407-140\",\n        \"rg\": \"00345679-9\",\n        \"cpf\": \"00774901036\",\n        \"dataNascimento\": \"2017-03-05T00:00:00\",\n        \"idUsuario\": 21,\n        \"consultas\": []\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ProntuarioPacienteRepository.Deletar",
+					"request": {
+						"url": "localhost:5000/api/prontuariospacientes/9",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ProntuarioPacienteRepository.Alterar",
+					"request": {
+						"url": "localhost:5000/api/prontuariospacientes",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": 11,\n        \"nome\": \"Paciente teste alterado\",\n        \"endereco\": \"R Alterada, 232 - Vila Universal, Barueri - SP, 06407-140\",\n        \"rg\": \"00345679-9\",\n        \"cpf\": \"00774901036\",\n        \"dataNascimento\": \"2017-03-05T00:00:00\",\n        \"idUsuario\": 21,\n        \"consultas\": []\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clinicas",
+			"description": "",
+			"item": [
+				{
+					"name": "ClinicaRepository.ListarClinicas",
+					"request": {
+						"url": "localhost:5000/api/clinicas",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ClinicaRepository.Alterar",
+					"request": {
+						"url": "localhost:5000/api/clinicas",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": 1,\n        \"nome\": \"SP Medical Group\",\n        \"cnpj\": \"86.400.902/0001-30\",\n        \"razaoSocial\": \"CLINICA POSSARLE\",\n        \"endereco\": \"Av. Barão Limeira, 532, São Paulo, SP\",\n        \"medicos\": []\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ClinicaRepository.Cadastrar",
+					"request": {
+						"url": "localhost:5000/api/clinicas",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"nome\": \"TESTEDeletado\",\n        \"cnpj\": \"00.000.000/0001-00\",\n        \"razaoSocial\": \"testedeletado\",\n        \"endereco\": \"Av. Barão Limeira, 532, São Paulo, SP\",\n        \"medicos\": []\n    \n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ClinicaRepository.Deletar",
+					"request": {
+						"url": "localhost:5000/api/clinicas/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consultas",
+			"description": "",
+			"item": [
+				{
+					"name": "ConsultaRepository.ListarConsultas",
+					"request": {
+						"url": "localhost:5000/api/consultas",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbGVuYS5zb3V6YUBzcG1lZGljYWxncm91cC5jb20uYnIiLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiTcOpZGljbyIsImV4cCI6MTU1MjU5NjA5MSwiaXNzIjoiU3BtZWRncm91cC5XZWJBcGkiLCJhdWQiOiJTcG1lZGdyb3VwLldlYkFwaSJ9.cmAkLzjn3wWj_FYd7YmlS6CktT9opMB8xJA6q9X3x6Y",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ConsultaRepository.CancelarAgendamento",
+					"request": {
+						"url": "localhost:5000/api/consultas/cancelamento",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbUBhZG0uY29tLmJyIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFETSIsImV4cCI6MTU1MjU5MjM2NSwiaXNzIjoiU3BtZWRncm91cC5XZWJBcGkiLCJhdWQiOiJTcG1lZGdyb3VwLldlYkFwaSJ9.0o7-tRF3cCTscyHrAxlIyR497KwtO0wRANrb0LCOMDk",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": 1,\n        \"situacao\": \"Cancelada\"\n        \n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ConsultaRepository.Cadastrar",
+					"request": {
+						"url": "localhost:5000/api/consultas",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbUBhZG0uY29tLmJyIiwianRpIjoiMSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFETSIsImV4cCI6MTU1MzAyNDA2OSwiaXNzIjoiU3BtZWRncm91cC5XZWJBcGkiLCJhdWQiOiJTcG1lZGdyb3VwLldlYkFwaSJ9.8ScwGgiDkFTA1Z4K0rD3SRmyoA1EdO-ZiCdRMvWW2po",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"dataConsulta\": \"2019-03-09T17:00:00\",\n        \"situacao\": \"Agendada\",\n        \"idMedico\": 1,\n        \"idProntuarioPaciente\": 4\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "ConsultaRepository.AlterarDescricao",
+					"request": {
+						"url": "localhost:5000/api/consultas/",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbGVuYS5zb3V6YUBzcG1lZGljYWxncm91cC5jb20uYnIiLCJqdGkiOiIyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiTcOpZGljbyIsImV4cCI6MTU1MzAyNTAyMSwiaXNzIjoiU3BtZWRncm91cC5XZWJBcGkiLCJhdWQiOiJTcG1lZGdyb3VwLldlYkFwaSJ9.PAjvYh1kk5iWFS647ep60CYpTV4l9-LhKXeGCTGsAUg",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": 8,\n        \"descricao\": \"descricao alterada\"\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UsuarioRepository.BuscarPorEmailSenha",
+			"request": {
+				"url": "localhost:5000/api/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"email\": \"helena.souza@spmedicalgroup.com.br\",\n        \"senha\": \"345678\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
