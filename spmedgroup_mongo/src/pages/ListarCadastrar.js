@@ -19,13 +19,14 @@ class ListarCadastrar extends Component{
     listarUsuarios(){
         Axios.get('http://192.168.3.70:5000/api/usuariosmongo',
         {
-            // headers: {
-            //   'Content-Type': 'application/json',
-            //   'Authorization': 'Bearer ' + localStorage.getItem('usuario_mongospmedgroup')
-            // } //comentado porque ainda não tem o login
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('usuario_mongospmedgroup')
+            } //comentado porque ainda não tem o login
         }
         )
    
+        //TENTATIVA MAL SUCEDIDA EM ATUALIZAR A TELA EM TEMPO REAL
         // .onSnapshot((usuariosmongo) => {
         //     let usuariosmongoArray = [];
 
@@ -63,6 +64,9 @@ class ListarCadastrar extends Component{
       //Um único para todos já vai bastar.
     
     
+    //O cadastro funciona. Contudo, assim que o cadastro é feito, aparece uma
+    //tela de erro. Se a página for atualizada, o registro cadastrado, assim
+    //como todos os que já estavam no banco, é listado.
     cadastrarUsuarios(event){
         event.preventDefault();
 
@@ -77,15 +81,19 @@ class ListarCadastrar extends Component{
 
         Axios.post('http://192.168.3.70:5000/api/usuariosmongo', usuariosmongo,
         {
-            // headers: {
-            //   'Content-Type': 'application/json',
-            //   'Authorization': 'Bearer ' + localStorage.getItem('usuario_mongospmedgroup')
-            // } //comentado porque ainda não tem o login
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + localStorage.getItem('usuario_mongospmedgroup')
+            } 
         }
         )
         .then(res => {
             let usuariosmongo = res.data;
             this.setState({ lista_usuariosmongo : usuariosmongo});
+            alert("Especialidade do médico e endereço do paciente foram cadastrados.");
+            //o alerta ainda não funciona.
+        }).catch((erro) => {
+            console.log('erro', erro)
         })  
         
         console.log(usuariosmongo);
@@ -106,7 +114,7 @@ class ListarCadastrar extends Component{
                             <th>#</th>
                             <th>Email</th>
                             <th>Tipo de usuário</th>
-                            <th>Especialidade</th>
+                            <th>Especialidade do médico</th>
                             <th>Doença</th>
                             <th>Latitude</th>
                             <th>Longitude</th>
@@ -142,7 +150,7 @@ class ListarCadastrar extends Component{
                 <h2>Cadastro de usuários</h2>
                         <form onSubmit={this.cadastrarUsuarios.bind(this)}>
                             <div>Email <input 
-                                        value={this.state.titulo} 
+                                        value={this.state.email} 
                                         type="text"
                                         onChange={this.atualizaEstado.bind(this)}
                                         name="email"/>

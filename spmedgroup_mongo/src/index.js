@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import ListarCadastar from './pages/ListarCadastrar';
+import ListarCadastrar from './pages/ListarCadastrar';
+import Login from './pages/Login';
 import { usuarioAutenticado } from './services/auth';
 
 import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
@@ -14,7 +15,8 @@ const Permissao = ({component : Component}) => (
     <Route
         render = {props => usuarioAutenticado() ? 
             (<Component {...props } />) :
-            (<Redirect to={{ pathname : "/listarcadastrar", state : {from: props.location}}} /> ) //se não estiver autenticado, redireciona para a página do login
+            (<Redirect to={{ pathname : "/login", state : {from: props.location}}} /> ) 
+            //se não estiver autenticado, redireciona para a página do login
         }
     />
 ); 
@@ -23,8 +25,8 @@ const rotas = (
     <Router>
         <div>
            <Switch>
-                <Route exact path="/" component={ListarCadastar} />
-
+           <Route exact path="/" component={Login} />
+                <Permissao path="/listarcadastrar" component={ListarCadastrar} />
            </Switch>
         </div>
     </Router>
@@ -38,3 +40,10 @@ ReactDOM.render(rotas, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+
+
+{/* <Switch>
+                <Route exact path="/" component={Login} />
+                <Permissao path="/listarcadastrar" component={ListarCadastrar} />
+           </Switch> */}

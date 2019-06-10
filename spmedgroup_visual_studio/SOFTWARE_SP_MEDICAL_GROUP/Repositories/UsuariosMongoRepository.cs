@@ -19,23 +19,27 @@ namespace SOFTWARE_SP_MEDICAL_GROUP.Repositories
             _usuarios = database.GetCollection<UsuariosMongo>("usuarios");  //chamando a tabela a ser usada
         }
 
-        //public UsuariosMongo BuscarPorEmailSenha(string email, string senha) //Estão em minúscula porque se referem ao que o usuário digitou,
-        //                                                                     // não ao que está no sistema.
-        //{
-        //    //db.auth( < username >, < password > )
+        //Estão em minúscula porque se referem ao que o usuário digitou, não ao que está no sistema.
+        public UsuariosMongo BuscarPorEmailSenha(string email, string senha)
+        {
 
-        //    UsuariosMongo usuarioBuscado = _usuarios.Find(Email === email && Senha === senha);
-        //    //usar find e where
+            UsuariosMongo usuarioBuscado = _usuarios.Find(x => x.Email == email && x.Senha == senha).FirstOrDefault();
 
-            //.where("ativo", "==", true) é no react. Talvez, se eu fizer algo como .Find(where("Email", "==", "email))
-
-        //    return usuarioBuscado;
-        //}
+            return usuarioBuscado;
+        }
 
         public void Cadastrar(UsuariosMongo usuariomongo)
         {
             _usuarios.InsertOne(usuariomongo);
         }
+
+        //ainda não funciona
+        //public void Deletar(string Id)
+        //{
+        //    UsuariosMongo usuarioProcurado = _usuarios.Find(Id).FirstOrDefault();
+
+        //    _usuarios.Remove(usuarioProcurado);
+        //}
 
         public List<UsuariosMongo> ListarTodos()
         {

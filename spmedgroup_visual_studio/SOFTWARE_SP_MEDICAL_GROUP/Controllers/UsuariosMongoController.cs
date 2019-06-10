@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SOFTWARE_SP_MEDICAL_GROUP.Domains;
@@ -22,6 +23,8 @@ namespace SOFTWARE_SP_MEDICAL_GROUP.Controllers
             usuarioMongoRepository = new UsuariosMongoRepository();
         }
 
+        [Authorize] //Por enquanto, qualquer usuário registrado no mongo pode fazer tudo. Tenho que modificar isso.
+        //[Authorize(Roles = "adm")]
         [HttpPost]
         public IActionResult Cadastrar(UsuariosMongo usuario)
         {
@@ -30,12 +33,13 @@ namespace SOFTWARE_SP_MEDICAL_GROUP.Controllers
                 usuarioMongoRepository.Cadastrar(usuario);
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest();
             }
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult ListarTodos()
         {
@@ -49,7 +53,23 @@ namespace SOFTWARE_SP_MEDICAL_GROUP.Controllers
             }
         }
 
-
+        //ainda não funciona
+        //[Authorize]
+        //[HttpDelete("{Id}")]
+        //public IActionResult Delete(string Id)
+        //{
+        //    try
+        //    {
+        //        usuarioMongoRepository.Deletar(Id);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
 
     }
+
 }
+

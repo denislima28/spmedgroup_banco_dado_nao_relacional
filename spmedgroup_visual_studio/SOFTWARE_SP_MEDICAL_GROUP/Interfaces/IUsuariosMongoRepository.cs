@@ -12,6 +12,8 @@ namespace SOFTWARE_SP_MEDICAL_GROUP.Interfaces
 
         List<UsuariosMongo> ListarTodos();
 
-        //UsuariosMongo BuscarPorEmailSenha(string email, string senha);
+        UsuariosMongo BuscarPorEmailSenha(string email, string senha);
+
+        //void Deletar(string Id); //ainda não funciona
     }
 }
