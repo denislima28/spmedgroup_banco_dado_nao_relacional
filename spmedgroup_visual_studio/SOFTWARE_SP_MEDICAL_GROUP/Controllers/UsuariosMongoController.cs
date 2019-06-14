@@ -54,20 +54,20 @@ namespace SOFTWARE_SP_MEDICAL_GROUP.Controllers
         }
 
         //ainda não funciona
-        //[Authorize]
-        //[HttpDelete("{Id}")]
-        //public IActionResult Delete(string Id)
-        //{
-        //    try
-        //    {
-        //        usuarioMongoRepository.Deletar(Id);
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest();
-        //    }
-        //}
+        [Authorize]
+        [HttpDelete("{Id}")]
+        public IActionResult Delete(string Id)
+        {
+            try
+            {
+                usuarioMongoRepository.Deletar(Id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
 
     }
 

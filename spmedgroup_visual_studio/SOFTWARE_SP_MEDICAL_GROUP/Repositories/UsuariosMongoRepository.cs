@@ -22,7 +22,6 @@ namespace SOFTWARE_SP_MEDICAL_GROUP.Repositories
         //Estão em minúscula porque se referem ao que o usuário digitou, não ao que está no sistema.
         public UsuariosMongo BuscarPorEmailSenha(string email, string senha)
         {
-
             UsuariosMongo usuarioBuscado = _usuarios.Find(x => x.Email == email && x.Senha == senha).FirstOrDefault();
 
             return usuarioBuscado;
@@ -33,13 +32,11 @@ namespace SOFTWARE_SP_MEDICAL_GROUP.Repositories
             _usuarios.InsertOne(usuariomongo);
         }
 
-        //ainda não funciona
-        //public void Deletar(string Id)
-        //{
-        //    UsuariosMongo usuarioProcurado = _usuarios.Find(Id).FirstOrDefault();
-
-        //    _usuarios.Remove(usuarioProcurado);
-        //}
+        //Ainda não funciona. Precisa ser consertado.
+        public void Deletar(string Id)
+        {
+            UsuariosMongo usuarioProcurado = _usuarios.FindOneAndDelete(Id);
+        }
 
         public List<UsuariosMongo> ListarTodos()
         {

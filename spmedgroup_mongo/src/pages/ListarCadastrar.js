@@ -1,7 +1,37 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
-class ListarCadastrar extends Component{
+const mapStyles = {
+    width: '70%',
+    height: '70%'
+  };
+
+
+class ListarCadastrar extends Component{ 
+    
+    state = {
+    showingInfoWindow: false,  //Hides or the shows the infoWindow
+    activeMarker: {},          //Shows the active marker upon click
+    selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
+      };
+
+      onMarkerClick = (props, marker, e) =>
+      this.setState({
+        selectedPlace: props,
+        activeMarker: marker,
+        showingInfoWindow: true
+      });
+  
+    onClose = props => {
+      if (this.state.showingInfoWindow) {
+        this.setState({
+          showingInfoWindow: false,
+          activeMarker: null
+        });
+      }
+    };  
+
     constructor(){
         super();
 
@@ -22,7 +52,7 @@ class ListarCadastrar extends Component{
             headers: {
               'Content-Type': 'application/json',
               'Authorization': 'Bearer ' + localStorage.getItem('usuario_mongospmedgroup')
-            } //comentado porque ainda não tem o login
+            }
         }
         )
    
@@ -57,6 +87,21 @@ class ListarCadastrar extends Component{
     componentDidMount(){
         this.listarUsuarios();
     }
+
+    //ainda precisa ser melhorado 
+    // mostrarLocalizacoesGoogle(){
+    //     Axios.get('http://192.168.3.70:5000/api/usuariosmongo',
+    //     {
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //           'Authorization': 'Bearer ' + localStorage.getItem('usuario_mongospmedgroup')
+    //         } 
+    //     }
+    //     )       
+
+        
+
+    // }
 
     atualizaEstado(event){
         this.setState({[event.target.name] : event.target.value});
@@ -100,9 +145,14 @@ class ListarCadastrar extends Component{
     }
 
     render() {
-        return (
 
+        return (
             <main className="usuariosmongo_listar">
+
+                
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgl5jcqJtDQiMBEvVkd_QLRQxeHyKP1so&callback=initMap"
+  type="text/javascript"></script>
+
 
                 <h2>Listagem de usuários</h2>
 
@@ -163,7 +213,7 @@ class ListarCadastrar extends Component{
                                         name="tipo_usuario"/>
                             </div>
 
-                            <div>Especialidade <input 
+                            <div>Especialidade do médico<input 
                                         value={this.state.especialidade} 
                                         type="text"
                                         onChange={this.atualizaEstado.bind(this)}
@@ -195,12 +245,42 @@ class ListarCadastrar extends Component{
 
                         </form>
 
+                
+        {/* Código do mapa e marcador do ponto central */}
+        {/* Arranjar uma maneira de fazer o mapa mostrar a latitude e longitude guardadas no banco */}       
+                <Map
+                    google={this.props.google}
+                    zoom={14}
+                    style={mapStyles}
+                    initialCenter={{
+                    lat: 23.9988442,
+                    lng: 88.6455588
+                    }}>
+                    <Marker
+                    onClick={this.onMarkerClick}
+                    />
+                    <InfoWindow
+                    marker={this.state.activeMarker}
+                    visible={this.state.showingInfoWindow}
+                    onClose={this.onClose}>
+                         
+                    </InfoWindow>                    
+                </Map>      
+
+
             </main>
-        )
+        );
     }
 
     
 
 }
 
-export default ListarCadastrar;
+export default GoogleApiWrapper({
+    apiKey: 'AIzaSyAgl5jcqJtDQiMBEvVkd_QLRQxeHyKP1so' 
+  })(ListarCadastrar);
+
+//Além de fazer o código e pegar a chave, também é necessário ir até o google cloud
+//e habilitar o acesso ao Google Maps. Do contrário, o mapa não aparece.
+
+//Este link pode ajudar com o mapa: https://scotch.io/tutorials/react-apps-with-the-google-maps-api-and-google-maps-react

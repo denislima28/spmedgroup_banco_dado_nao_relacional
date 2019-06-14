@@ -14,6 +14,6 @@ namespace SOFTWARE_SP_MEDICAL_GROUP.Interfaces
 
         UsuariosMongo BuscarPorEmailSenha(string email, string senha);
 
-        //void Deletar(string Id); //ainda não funciona
+        void Deletar(string Id); //ainda não funciona
     }
 }
