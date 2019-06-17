@@ -15,7 +15,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjA1NDEwNDAsImlzcyI6IlNwbWVkZ3JvdXAuV2ViQXBpIiwiYXVkIjoiU3BtZWRncm91cC5XZWJBcGkifQ.KYzQ-TX3i2m8sNWkPLVBEdinUlT3KfzId04bkgz2LjM",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjA4MDExNTIsImlzcyI6IlNwbWVkZ3JvdXAuV2ViQXBpIiwiYXVkIjoiU3BtZWRncm91cC5XZWJBcGkifQ.aK8R5jSjcJGiqJvJw7M9J2Y2hIjY1ud3m7-GtQPvUVE",
 						"description": ""
 					}
 				],
@@ -38,7 +38,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n     \"email\": \"adm@adm.com.br\",\n        \"senha\": \"123456\"\n}"
+					"raw": "{\n     \"email\": \"ligia@gmail.com\",\n        \"senha\": \"aaa\"\n}"
 				},
 				"description": ""
 			},
@@ -54,11 +54,16 @@
 						"key": "Content-Type",
 						"value": "application/json",
 						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjA4MDExNTIsImlzcyI6IlNwbWVkZ3JvdXAuV2ViQXBpIiwiYXVkIjoiU3BtZWRncm91cC5XZWJBcGkifQ.aK8R5jSjcJGiqJvJw7M9J2Y2hIjY1ud3m7-GtQPvUVE",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"email\": \"denis@gmail.com\",\n        \"senha\": \"ddd\",\n        \"tipo_usuario\": \"paciente\",\n        \"doenca\": \"sinusite\",\n        \"latitude\": \"23.5345242° N\",\n        \"longitude\": \"46.6499879° E\"\n    }"
+					"raw": "{\n        \"email\": \"denis@denis.com\",\n        \"senha\": \"ddd\",\n        \"tipo_usuario\": \"paciente\",\n        \"especialidade\": \"Fisioterapeuta\",\n        \"doenca\": \"Traumatismo\",\n        \"latitude\": \"-13.5384495\",\n        \"longitude\": \"-16.6700197\"\n    }"
 				},
 				"description": ""
 			},

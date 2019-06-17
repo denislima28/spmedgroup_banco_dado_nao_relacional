@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
-const mapStyles = {
-    width: '70%',
-    height: '70%'
-  };
-
 
 class ListarCadastrar extends Component{ 
     
@@ -14,21 +9,21 @@ class ListarCadastrar extends Component{
     showingInfoWindow: false,  //Hides or the shows the infoWindow
     activeMarker: {},          //Shows the active marker upon click
     selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
-      };
+      }; //É parte do código para mostrar o mapa e marcadores.
 
       onMarkerClick = (props, marker, e) =>
       this.setState({
         selectedPlace: props,
         activeMarker: marker,
         showingInfoWindow: true
-      });
+      });//É parte do código para mostrar o mapa e marcadores.
   
     onClose = props => {
       if (this.state.showingInfoWindow) {
         this.setState({
           showingInfoWindow: false,
           activeMarker: null
-        });
+        });//É parte do código para mostrar o mapa e marcadores.
       }
     };  
 
@@ -97,21 +92,18 @@ class ListarCadastrar extends Component{
     //           'Authorization': 'Bearer ' + localStorage.getItem('usuario_mongospmedgroup')
     //         } 
     //     }
-    //     )       
-
-        
-
+    //     )            
     // }
 
     atualizaEstado(event){
         this.setState({[event.target.name] : event.target.value});
-    } //colocando name nos inputs, não é preciso criar um método de atualização para cada um.
+    } //Colocando name nos inputs, não é preciso criar um método de atualização para cada um.
       //Um único para todos já vai bastar.
     
-    
+
     //O cadastro funciona. Contudo, assim que o cadastro é feito, aparece uma
-    //tela de erro. Se a página for atualizada, o registro cadastrado, assim
-    //como todos os que já estavam no banco, é listado.
+    //tela de erro. Se a página for atualizada, o registro  que acabou de ser
+    //cadastrado, assim como todos os que já estavam no banco, é listado.
     cadastrarUsuarios(event){
         event.preventDefault();
 
@@ -146,13 +138,13 @@ class ListarCadastrar extends Component{
 
     render() {
 
+        const mapStyles = {
+            width: '70%',
+            height: '70%'
+          }; //Determina a altura e comprimento do mapa na página.
+
         return (
             <main className="usuariosmongo_listar">
-
-                
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgl5jcqJtDQiMBEvVkd_QLRQxeHyKP1so&callback=initMap"
-  type="text/javascript"></script>
-
 
                 <h2>Listagem de usuários</h2>
 
@@ -186,16 +178,12 @@ class ListarCadastrar extends Component{
                                     </tr>
                                 );
                             })
-
-
                         }
                         </tbody>
 
-
                     </table>
 
-                </div>
-                
+                </div>                
 
                 <h2>Cadastro de usuários</h2>
                         <form onSubmit={this.cadastrarUsuarios.bind(this)}>
@@ -253,27 +241,43 @@ class ListarCadastrar extends Component{
                     zoom={14}
                     style={mapStyles}
                     initialCenter={{
-                    lat: 23.9988442,
-                    lng: 88.6455588
-                    }}>
+                    lat: 0,
+                    lng: 0
+                    }}
+                    >{/* Centro do mapa */}
                     <Marker
                     onClick={this.onMarkerClick}
+                    position = {{ lat: -3.5345442, lng: 1.6493879 }}
                     />
+                    <Marker
+                    onClick={this.onMarkerClick}
+                    position = {{ lat: 3.5345442, lng: 1.6493879 }}
+                    />
+                    <Marker
+                    onClick={this.onMarkerClick}
+                    position = {{ lat: 1.5345442, lng: 1.6493879 }}
+                    />
+
+                    {/* Talvez possa ser usado para mostrar no mapa as
+                    coordenadas no banco de dados. 
+                    
+                    for (int i = 0; i < 5; i++)
+                    {
+                         <Marker
+                         onClick={this.onMarkerClick}
+                         position = {{ lat: 1.5345442, lng: 1.6493879 }}/>
+                    } */}
+
                     <InfoWindow
                     marker={this.state.activeMarker}
                     visible={this.state.showingInfoWindow}
-                    onClose={this.onClose}>
-                         
+                    onClose={this.onClose}>                       
                     </InfoWindow>                    
                 </Map>      
-
 
             </main>
         );
     }
-
-    
-
 }
 
 export default GoogleApiWrapper({
@@ -282,5 +286,7 @@ export default GoogleApiWrapper({
 
 //Além de fazer o código e pegar a chave, também é necessário ir até o google cloud
 //e habilitar o acesso ao Google Maps. Do contrário, o mapa não aparece.
+
+//Também dá para fazer sem a chave, mas aí aparece no mapa "For development purposes only".
 
 //Este link pode ajudar com o mapa: https://scotch.io/tutorials/react-apps-with-the-google-maps-api-and-google-maps-react
